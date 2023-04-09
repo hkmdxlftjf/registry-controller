@@ -1,0 +1,66 @@
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories (remove the comment below if you are using Go modules)
+# vendor/
+
+# Project-local glide cache, RE: https://github.com/Masterminds/glide/issues/736
+.glide/
+
+# Build artifacts
+dist/
+
+# IDE files
+.vscode/
+.idea/
+
+# Compiled Object files, Static and Dynamic libs (Shared Objects)
+*.o
+*.a
+*.s
+*.cgo1.go
+*.cgo2.c
+
+# Folders
+_obj
+_test
+
+# Architecture specific extensions/prefixes
+*.[568vq]
+*.win
+*.cgo1.go
+*.cgo2.c
+*.exe
+*.test
+*.prof
+
+# Log files
+*.log
+
+# Node-Related Directories
+node_modules/
+
+# Golang specific
+*.test
+*.coverprofile
+*.prof
+*.trace
+*.cgo1.go
+*.cgo2.c
+*.cgo1.c
+*.cgo1.h
+*.cgo2.h
+
+# macOS specific
+.DS_Store
+/bin/
