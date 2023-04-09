@@ -2,14 +2,14 @@
 # This file is used to track the info used to scaffold your project
 # and allow the plugins properly work.
 # More info: https://book.kubebuilder.io/reference/project-config.html
-domain: padok.fr
+domain: bigfemonkey.org
 layout:
 - go.kubebuilder.io/v3
 plugins:
   manifests.sdk.operatorframework.io/v2: {}
   scorecard.sdk.operatorframework.io/v2: {}
-projectName: label-operator
-repo: github.com/busser/label-operator
+projectName: registry-controller
+repo: github.com/busser/registry-controller
 resources:
 - controller: true
   group: core

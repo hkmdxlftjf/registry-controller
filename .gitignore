@@ -63,4 +63,6 @@ node_modules/
 
 # macOS specific
 .DS_Store
+
 token
+/bin/k8s/1.26.0-linux-amd64/
