@@ -64,3 +64,4 @@ node_modules/
 # macOS specific
 .DS_Store
 /bin/
+token
