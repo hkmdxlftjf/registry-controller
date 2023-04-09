@@ -85,6 +85,12 @@ func (r *EndpointsReconciler) Reconcile(ctx context.Context, req ctrl.Request) (
 		}
 	}
 
+	// 如果envoyfilter存在，并且没有注册中心服务的label或者endpoint被删除（svc不存在），删除该envoyfilter
+	if !envoyfilter.CreationTimestamp.IsZero() && (!registryService || !endpoints.DeletionTimestamp.IsZero()) {
+		_ = r.IstioClient.NetworkingV1alpha3().VirtualServices(namespace).Delete(ctx,
+			name, metav1.DeleteOptions{})
+	}
+
 	if registryService {
 		// update rds for xds
 		// select all endpoints for this service
@@ -140,13 +146,7 @@ func (r *EndpointsReconciler) Reconcile(ctx context.Context, req ctrl.Request) (
 			}
 		}
 
-	} else {
-		if !envoyfilter.CreationTimestamp.IsZero() {
-			_ = r.IstioClient.NetworkingV1alpha3().VirtualServices(namespace).Delete(ctx,
-				name, metav1.DeleteOptions{})
-		}
 	}
-
 	return ctrl.Result{}, nil
 }
 
