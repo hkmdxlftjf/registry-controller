@@ -1,0 +1,12 @@
+apiVersion: dubbo.my.domain/v1
+kind: Dubbo
+metadata:
+  labels:
+    app.kubernetes.io/name: dubbo
+    app.kubernetes.io/instance: dubbo-sample
+    app.kubernetes.io/part-of: registry-controller
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: registry-controller
+  name: dubbo-sample
+spec:
+  # TODO(user): Add fields here
