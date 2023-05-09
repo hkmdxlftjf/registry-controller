@@ -2,7 +2,7 @@
 # This file is used to track the info used to scaffold your project
 # and allow the plugins properly work.
 # More info: https://book.kubebuilder.io/reference/project-config.html
-domain: my.domain
+domain: org.bigfemonkey
 layout:
 - go.kubebuilder.io/v4
 multigroup: true
@@ -10,12 +10,12 @@ projectName: registry-controller
 repo: registry-controller
 resources:
 - controller: true
-  domain: my.domain
+  domain: org.bigfemonkey
   group: api
   kind: Endpoints
   version: v1
 - controller: true
-  domain: my.domain
+  domain: org.bigfemonkey
   group: api
   kind: Service
   version: v1
@@ -23,9 +23,9 @@ resources:
     crdVersion: v1
     namespaced: true
   controller: true
-  domain: my.domain
+  domain: org.bigfemonkey
   group: dubbo
-  kind: Dubbo
+  kind: DubboRoute
   path: registry-controller/api/dubbo/v1
   version: v1
 version: "3"

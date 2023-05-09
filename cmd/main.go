@@ -18,6 +18,7 @@ package main
 
 import (
 	"flag"
+	versionedclient "istio.io/client-go/pkg/clientset/versioned"
 	"os"
 
 	// Import all Kubernetes client auth plugins (e.g. Azure, GCP, OIDC, etc.)
@@ -72,7 +73,7 @@ func main() {
 		Port:                   9443,
 		HealthProbeBindAddress: probeAddr,
 		LeaderElection:         enableLeaderElection,
-		LeaderElectionID:       "1d7b4a2d.my.domain",
+		LeaderElectionID:       "1d7b4a2d.org.bigfemonkey",
 		// LeaderElectionReleaseOnCancel defines if the leader should step down voluntarily
 		// when the Manager ends. This requires the binary to immediately end when the
 		// Manager is stopped, otherwise, this setting is unsafe. Setting this significantly
@@ -89,26 +90,31 @@ func main() {
 		setupLog.Error(err, "unable to start manager")
 		os.Exit(1)
 	}
-
+	ic, err := versionedclient.NewForConfig(mgr.GetConfig())
 	if err = (&controller.EndpointsReconciler{
-		Client: mgr.GetClient(),
-		Scheme: mgr.GetScheme(),
+		Log:         ctrl.Log.WithName("controllers").WithName("Endpoints"),
+		Client:      mgr.GetClient(),
+		IstioClient: ic,
+		Scheme:      mgr.GetScheme(),
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "Endpoints")
 		os.Exit(1)
 	}
 	if err = (&controller.ServiceReconciler{
+		Log:    ctrl.Log.WithName("controllers").WithName("Service"),
 		Client: mgr.GetClient(),
 		Scheme: mgr.GetScheme(),
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "Service")
 		os.Exit(1)
 	}
-	if err = (&dubbocontroller.DubboReconciler{
+
+	if err = (&dubbocontroller.DubboRouteReconciler{
+		Log:    ctrl.Log.WithName("controllers").WithName("DubboRoute"),
 		Client: mgr.GetClient(),
 		Scheme: mgr.GetScheme(),
 	}).SetupWithManager(mgr); err != nil {
-		setupLog.Error(err, "unable to create controller", "controller", "Dubbo")
+		setupLog.Error(err, "unable to create controller", "controller", "DubboRoute")
 		os.Exit(1)
 	}
 	//+kubebuilder:scaffold:builder

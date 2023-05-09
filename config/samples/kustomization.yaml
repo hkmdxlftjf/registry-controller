@@ -1,4 +1,0 @@
-## Append samples of your project ##
-resources:
-- dubbo_v1_dubbo.yaml
-#+kubebuilder:scaffold:manifestskustomizesamples
