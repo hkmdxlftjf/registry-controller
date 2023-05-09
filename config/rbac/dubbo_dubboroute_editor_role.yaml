@@ -1,0 +1,31 @@
+# permissions for end users to edit dubboroutes.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: dubboroute-editor-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: registry-controller
+    app.kubernetes.io/part-of: registry-controller
+    app.kubernetes.io/managed-by: kustomize
+  name: dubboroute-editor-role
+rules:
+- apiGroups:
+  - dubbo.org.bigfemonkey
+  resources:
+  - dubboroutes
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - dubbo.org.bigfemonkey
+  resources:
+  - dubboroutes/status
+  verbs:
+  - get

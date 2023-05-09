@@ -1,0 +1,31 @@
+apiVersion: dubbo.org.bigfemonkey/v1
+kind: DubboRoute
+metadata:
+  labels:
+    app.kubernetes.io/name: dubboroute
+    app.kubernetes.io/instance: dubboroute-sample
+    app.kubernetes.io/part-of: registry-controller
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: registry-controller
+  name: dubboroute-sample
+spec:
+  host: dubbo-provider
+  route_config:
+  - interface: org.bigfemonkey.DemoService
+    name: sayHello_route
+    routes:
+    - method: 
+        exact: sayHello
+      route:
+      - cluster: dubbo-1
+        weight: 20
+      - cluster: dubbo-2
+        weight: 80
+  - interface: org.bigfemonkey.DemoService
+    name: hello_route
+    routes:
+    - method: 
+        exact: hello
+      route:
+      - cluster: dubbo-2
+        

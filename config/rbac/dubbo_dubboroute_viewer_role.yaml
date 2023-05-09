@@ -1,0 +1,27 @@
+# permissions for end users to view dubboroutes.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  labels:
+    app.kubernetes.io/name: clusterrole
+    app.kubernetes.io/instance: dubboroute-viewer-role
+    app.kubernetes.io/component: rbac
+    app.kubernetes.io/created-by: registry-controller
+    app.kubernetes.io/part-of: registry-controller
+    app.kubernetes.io/managed-by: kustomize
+  name: dubboroute-viewer-role
+rules:
+- apiGroups:
+  - dubbo.org.bigfemonkey
+  resources:
+  - dubboroutes
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - dubbo.org.bigfemonkey
+  resources:
+  - dubboroutes/status
+  verbs:
+  - get
