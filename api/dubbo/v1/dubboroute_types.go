@@ -35,17 +35,19 @@ const (
 type DubboSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "make" to regenerate code after modifying this file
-	RouteConfig *[]RouteConfig `json:"route_config,omitempty"`
-	Host        string         `json:"host,omitempty"`
+	RouteConfig []RouteConfig `json:"route_config,omitempty"`
+	Host        string        `json:"host,omitempty"`
 }
 
 type Routes struct {
 	Method map[Match]string `json:"method,omitempty"`
-	Route  *[]Route         `json:"route"`
+	Route  []Route          `json:"route"`
 }
 
 type Route struct {
 	Cluster string `json:"cluster,omitempty"`
+	Port    int    `json:"port,omitempty"`
+	Version string `json:"version,omitempty"`
 	Weight  int    `json:"weight,omitempty"`
 }
 

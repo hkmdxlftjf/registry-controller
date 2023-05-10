@@ -110,9 +110,10 @@ func main() {
 	}
 
 	if err = (&dubbocontroller.DubboRouteReconciler{
-		Log:    ctrl.Log.WithName("controllers").WithName("DubboRoute"),
-		Client: mgr.GetClient(),
-		Scheme: mgr.GetScheme(),
+		Log:         ctrl.Log.WithName("controllers").WithName("DubboRoute"),
+		Client:      mgr.GetClient(),
+		Scheme:      mgr.GetScheme(),
+		IstioClient: ic,
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to create controller", "controller", "DubboRoute")
 		os.Exit(1)

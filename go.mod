@@ -1,4 +1,4 @@
-module registry-controller
+module github.com/hkmdxlftjf/registry-controller
 
 go 1.19
 

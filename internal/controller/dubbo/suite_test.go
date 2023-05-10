@@ -30,7 +30,7 @@ import (
 	logf "sigs.k8s.io/controller-runtime/pkg/log"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	dubbov1 "registry-controller/api/dubbo/v1"
+	dubbov1 "github.com/hkmdxlftjf/registry-controller/api/dubbo/v1"
 	//+kubebuilder:scaffold:imports
 )
 
